@@ -329,7 +329,8 @@ extension String {
         case .failingTest:
             let testCase = groups[2]
             let failingReason = groups[3]
-            return _colored ? indent + TestStatus.fail.rawValue.foreground.Red + " "  + testCase + ", " + failingReason : indent + TestStatus.fail.rawValue + " "  + testCase + ", " + failingReason
+            let line = groups[0].split(separator: ":").last ?? "0"
+            return _colored ? indent + TestStatus.fail.rawValue.foreground.Red + " "  + testCase + ":" + line + ", " + failingReason : indent + TestStatus.fail.rawValue + " "  + testCase + ":" + line + ", " + failingReason
         case .uiFailingTest:
             let file = groups[0]
             let failingReason = groups[1]
